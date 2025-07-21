@@ -35,6 +35,16 @@ A modular backend system that scrapes company websites, enriches metadata, score
 
 ---
 
+
+## Testing
+All endpoints can be tested via Postman or curl:
+- Batch preview
+- Score filtering
+- Text query scraping
+- CSV download
+Tests are run manually using Postman collection for now; automated test hooks can be integrated later using jest or supertest.
+
+
 ## Key Routes
 
 ### `/api/scrape/preview`
