@@ -19,7 +19,7 @@ function isValidUrl(url) {
   }
 }
 
-// 🔍 Preview a profile without saving
+// Preview a profile without saving
 router.post("/preview", async (req, res) => {
   const { url } = req.body;
   if (!url || !isValidUrl(url)) {
@@ -38,7 +38,7 @@ router.post("/preview", async (req, res) => {
   }
 });
 
-// 🔁 Scrape and save multiple profiles (no score filter)
+// Scrape and save multiple profiles (no score filter)
 router.post("/batch", async (req, res) => {
   const { urls } = req.body;
   if (!urls || !Array.isArray(urls)) {
@@ -72,10 +72,10 @@ router.post("/batch", async (req, res) => {
     }
   }
 
-  res.status(200).json({ message: "🔄 Batch scraping complete", results });
+  res.status(200).json({ message: "Batch scraping complete", results });
 });
 
-// 📤 Export all saved profiles as CSV
+// Export all saved profiles as CSV
 router.get("/export", async (req, res) => {
   try {
     const companies = await Company.find();
@@ -95,7 +95,7 @@ router.get("/export", async (req, res) => {
   }
 });
 
-// 🔍 Search using natural language query
+// Search using natural language query
 router.post("/search", async (req, res) => {
   const { query } = req.body;
 
@@ -104,7 +104,7 @@ router.post("/search", async (req, res) => {
   }
 
   try {
-    console.log("🔎 Initiating search for:", query);
+    console.log("Initiating search for:", query);
 
     const browser = await puppeteer.launch({
       headless: "new",
@@ -175,7 +175,7 @@ router.post("/search", async (req, res) => {
   }
 });
 
-// 🧠 Filter saved profiles by grade, industry, tech
+//  Filter saved profiles by grade, industry, tech
 router.get("/filter", async (req, res) => {
   const { score } = req.query;
 

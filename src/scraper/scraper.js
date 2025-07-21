@@ -136,13 +136,13 @@ async function scrapeCompanyData(url) {
       socialProof: extractSocialProof(combinedText),
     };
 
-    // ✨ Fallback name from <title>
+    // Fallback name from <title>
     if (!cleaned.name) {
       const metaTitle = $("title").text().trim();
       cleaned.name = metaTitle.split("-")[0].trim();
     }
 
-    // ✨ Fallback founded year
+    // Fallback founded year
     if (!cleaned.foundedYear) {
       const yearMatch = combinedLower.match(
         /founded (in|on)? (\d{4})|established (\d{4})/
@@ -150,19 +150,19 @@ async function scrapeCompanyData(url) {
       cleaned.foundedYear = yearMatch ? yearMatch[2] || yearMatch[3] : null;
     }
 
-    // ✨ Fallback tech stack from scripts
+    // Fallback tech stack from scripts
     if (!cleaned.techStack || cleaned.techStack.length === 0) {
       cleaned.techStack = raw.rawScripts.filter((src) =>
         /(cloudflare|react|angular|vue|gtag|google-analytics|jquery)/i.test(src)
       );
     }
 
-    // ✨ Fallback social links if extractor returned empty
+    // Fallback social links if extractor returned empty
     if (!cleaned.socialLinks || cleaned.socialLinks.length === 0) {
       cleaned.socialLinks = raw.socialLinksRaw;
     }
 
-    // 🔍 Debug log
+    // Debug log
     const missing = Object.entries(cleaned)
       .filter(
         ([_, val]) => val === null || (Array.isArray(val) && val.length === 0)
@@ -176,7 +176,7 @@ async function scrapeCompanyData(url) {
     cleaned.metaScore = calculateMetaScore(cleaned);
 
     await browser.close();
-    // 🧼 Clean output by removing nulls and empty arrays
+    // Clean output by removing nulls and empty arrays
     for (const [key, val] of Object.entries(cleaned)) {
       if (val === null || (Array.isArray(val) && val.length === 0)) {
         delete cleaned[key];

@@ -11,9 +11,9 @@ const CompanySchema = new mongoose.Schema({
   foundedYear: Number,
   services: [String],
   industry: String,
-  metaScore: Number,         // Data completeness rating
-  tags: [String],            // Auto-classified like SaaS, HealthTech, etc.
-  sentiment: String,         // Descriptive like "growth-oriented"
+  metaScore: Number,        
+  tags: [String],            
+  sentiment: String,         
   createdAt: {
     type: Date,
     default: Date.now
